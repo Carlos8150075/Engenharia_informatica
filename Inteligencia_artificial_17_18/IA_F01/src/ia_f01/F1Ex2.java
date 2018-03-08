@@ -7,7 +7,6 @@ package ia_f01;
 
 import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
-import robots.utils.Utils;
 
 /**
  *

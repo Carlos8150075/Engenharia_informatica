@@ -1,4 +1,4 @@
-package robots.utils;
+package ia_f01;
 
 import robocode.AdvancedRobot;
 import robocode.Robot;

@@ -8,7 +8,6 @@ package ia_f01;
 import java.awt.geom.Point2D;
 import robocode.AdvancedRobot;
 import robocode.ScannedRobotEvent;
-import robots.utils.Utils;
 
 /**
  *
