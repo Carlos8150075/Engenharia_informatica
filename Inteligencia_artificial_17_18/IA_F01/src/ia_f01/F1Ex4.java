@@ -5,11 +5,7 @@ import robocode.ScannedRobotEvent;
 
 import java.awt.geom.Point2D;
 
-import static ia_f01.F1Ex4.State.APPROACHING;
-import static ia_f01.F1Ex4.State.CIRCLING;
-import static ia_f01.F1Ex4.State.ROTATING_1;
-import static ia_f01.F1Ex4.State.ROTATING_2;
-import static ia_f01.F1Ex4.State.SEARCHING;
+import static ia_f01.F1Ex4.State.*;
 
 
 /**
