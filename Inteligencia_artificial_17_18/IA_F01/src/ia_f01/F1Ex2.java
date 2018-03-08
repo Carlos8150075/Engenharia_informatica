@@ -5,6 +5,7 @@
  */
 package ia_f01;
 
+import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 import robots.utils.Utils;
 
@@ -13,11 +14,12 @@ import robots.utils.Utils;
  * @author Bernardo
  */
 public class F1Ex2 extends robocode.Robot{
-
+    int turnDirection = 1;
+    
     @Override
     public void run() {
         while(true){
-            turnRadarLeft(360);
+            turnRight(5 * turnDirection);
         }
     }
 
@@ -25,7 +27,15 @@ public class F1Ex2 extends robocode.Robot{
     
     @Override
     public void onScannedRobot(ScannedRobotEvent event) {
-        System.out.println(event.getDistance());
+        if(event.getBearing() >= 0){
+            turnDirection = 1;
+        }else{
+            turnDirection = -1;
+        }
+        
+        turnRight(event.getBearing());
+        ahead(event.getDistance() + 5);
+        scan();
         
         if(event.getDistance() < 100 ){    
             fire(3);
@@ -34,6 +44,18 @@ public class F1Ex2 extends robocode.Robot{
         }else if(event.getDistance() > 200 && event.getDistance() < 300){
             fire(1);
         }
+    }
+
+    @Override
+    public void onHitRobot(HitRobotEvent event) {
+        if(event.getBearing() >= 0){
+            turnDirection = 1;
+        }else{
+            turnDirection= -1;
+        }
+        turnRight(event.getBearing());
+        
+        
     }
     
     
