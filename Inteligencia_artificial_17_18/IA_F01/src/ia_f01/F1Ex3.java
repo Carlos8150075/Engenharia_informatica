@@ -42,8 +42,7 @@ public class F1Ex3 extends robocode.Robot {
         } else if (event.getDistance() > 200 && event.getDistance() < 300) {
             fire(1);
         }
-        //turnGunLeft(1);
-        //turnGunRight(30);
+        
         if (getHeading() - getGunHeading() + event.getBearing() > 0)
             turn = -1;
         else
