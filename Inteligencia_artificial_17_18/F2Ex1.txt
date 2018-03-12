@@ -1,0 +1,5 @@
+Ficha 2 - Exercicio 1
+
+1º pontos - idade, montante, vencimento, despesas, vinculo laboral, estado civil, prazo, pago (Sim, Não) Label de Classe
+2º ponto - Várias colunas com os produtos comprados em conjunto, idade, pais, valor media gasto
+3º Ponto - idade, genero, regiao, curso, tipo_curso, n colunas com as n atividades

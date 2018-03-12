@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.bernardo.toolbar_preferences.SettingsFragment">
+
+
+    <TextView
+        android:id="@+id/select_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecione uma cor" />
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/color_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Azul" />
+
+    <RadioButton
+        android:id="@+id/color_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vermelho"/>
+
+    <RadioButton
+        android:id="@+id/color_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verde" />
+    </RadioGroup>
+</LinearLayout>

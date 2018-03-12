@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "50489731326",
+    "firebase_url": "https://cmuprojeto.firebaseio.com",
+    "project_id": "cmuprojeto",
+    "storage_bucket": "cmuprojeto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50489731326:android:2eb3b3e722c47ab0",
+        "android_client_info": {
+          "package_name": "com.example.bernardo.cmu_projeto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50489731326-34v23uopkkm7sicvfjukh1d6n4at9vcm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bernardo.cmu_projeto",
+            "certificate_hash": "c8def1ce5267a5d0bfcb0c5637cd08ecd5a422ed"
+          }
+        },
+        {
+          "client_id": "50489731326-daitg4jg428andtnb4ie94ap8eejsfh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1S1Oa2peqy7j7biV3-r70ecZqMWmE_B4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50489731326-daitg4jg428andtnb4ie94ap8eejsfh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
