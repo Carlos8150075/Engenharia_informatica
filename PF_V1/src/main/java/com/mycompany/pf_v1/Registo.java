@@ -167,7 +167,7 @@ public class Registo extends javax.swing.JFrame {
     }
 
     private boolean validateForm() {
-        if(jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() && !validateEmail()){
+        if(jTextField1.getText().isEmpty() && jTextField2.getText().isEmpty() && jPasswordField1.getPassword().toString().isEmpty()  && !validateEmail()){
             return false;
         }
         return true;
@@ -185,7 +185,7 @@ public class Registo extends javax.swing.JFrame {
     private void saveToDB(){
         String nome = jTextField1.getText();
         String email = jTextField2.getText();
-        String password = jPasswordField1.getText();
+        String password = jPasswordField1.getPassword().toString();
         
         
         String databaseName = "gestao";
