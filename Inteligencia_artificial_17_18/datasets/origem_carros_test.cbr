@@ -1,0 +1,11 @@
+mpg	displacement	horsepower	weight	acceleration	origin
+Int	Int	Int	Int	Int	String
+31	71	65	1773	19	japanese
+33	91	53	1795	18	japanese
+33	91	53	1795	17	japanese
+29	90	70	1937	14	european
+29	90	70	1937	14	european
+29	97	78	1940	15	european
+35	105	70	2150	15	american
+30	111	80	2155	15	american
+30	98	68	2155	17	american

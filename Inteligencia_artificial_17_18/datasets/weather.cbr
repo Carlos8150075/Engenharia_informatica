@@ -1,0 +1,9 @@
+outlook	temperature	humidity	windy	play
+String	Int	Int	Bool	Bool
+sunny	85	85	true	false
+sunny	80	90	true	false
+overcast	83	86	false	true
+rainy	70	96	false	true
+rainy	65	70	false	false
+sunny	87	90	true	false
+rainy	30	10	true	true

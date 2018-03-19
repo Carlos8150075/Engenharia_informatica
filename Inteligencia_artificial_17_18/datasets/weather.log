@@ -1,0 +1,88 @@
+2018-03-19 4:55:28.910 Reading datafile "../datasets/origem_carros_test.cbr".
+
+2018-03-19 4:55:28.910 New search for
+mpg=11, displacement=15, horsepower=25, weight=20, acceleration=11, origin=?
+
+2018-03-19 4:55:28.910 New search for
+mpg=11, displacement=15, horsepower=25, weight=20, acceleration=11, origin=?
+
+caseNum: 0
+Distance between Int "31" and "11", search type 0, 0: 1.0
+Distance between Int "71" and "15", search type 0, 0: 0.7
+Distance between Int "65" and "25", search type 0, 0: 0.7407407407407407
+Distance between Int "1773" and "20", search type 0, 0: 1.0
+Distance between Int "19" and "11", search type 0, 0: 0.8
+Distance between String "japanese" and "?", search type 0, 0: -1.0
+hit: 22.673484224965705
+
+caseNum: 1
+Distance between Int "33" and "11", search type 0, 0: 1.0
+Distance between Int "91" and "15", search type 0, 0: 0.95
+Distance between Int "53" and "25", search type 0, 0: 0.5185185185185185
+Distance between Int "1795" and "20", search type 0, 0: 1.0
+Distance between Int "18" and "11", search type 0, 0: 0.7
+Distance between String "japanese" and "?", search type 0, 0: -1.0
+hit: 22.286807270233197
+
+caseNum: 2
+Distance between Int "33" and "11", search type 0, 0: 1.0
+Distance between Int "91" and "15", search type 0, 0: 0.95
+Distance between Int "53" and "25", search type 0, 0: 0.5185185185185185
+Distance between Int "1795" and "20", search type 0, 0: 1.0
+Distance between Int "17" and "11", search type 0, 0: 0.6
+Distance between String "japanese" and "?", search type 0, 0: -1.0
+hit: 21.376807270233197
+
+caseNum: 3
+Distance between Int "29" and "11", search type 0, 0: 1.0
+Distance between Int "90" and "15", search type 0, 0: 0.9375
+Distance between Int "70" and "25", search type 0, 0: 0.8333333333333334
+Distance between Int "1937" and "20", search type 0, 0: 1.0
+Distance between Int "14" and "11", search type 0, 0: 0.3
+Distance between String "european" and "?", search type 0, 0: -1.0
+hit: 21.49675347222222
+
+caseNum: 4
+Distance between Int "29" and "11", search type 0, 0: 1.0
+Distance between Int "90" and "15", search type 0, 0: 0.9375
+Distance between Int "70" and "25", search type 0, 0: 0.8333333333333334
+Distance between Int "1937" and "20", search type 0, 0: 1.0
+Distance between Int "14" and "11", search type 0, 0: 0.3
+Distance between String "european" and "?", search type 0, 0: -1.0
+hit: 21.49675347222222
+
+caseNum: 5
+Distance between Int "29" and "11", search type 0, 0: 1.0
+Distance between Int "97" and "15", search type 0, 0: 1.0
+Distance between Int "78" and "25", search type 0, 0: 0.9814814814814815
+Distance between Int "1940" and "20", search type 0, 0: 1.0
+Distance between Int "15" and "11", search type 0, 0: 0.4
+Distance between String "european" and "?", search type 0, 0: -1.0
+hit: 23.93652949245542
+
+caseNum: 6
+Distance between Int "35" and "11", search type 0, 0: 1.0
+Distance between Int "105" and "15", search type 0, 0: 1.0
+Distance between Int "70" and "25", search type 0, 0: 0.8333333333333334
+Distance between Int "2150" and "20", search type 0, 0: 1.0
+Distance between Int "15" and "11", search type 0, 0: 0.4
+Distance between String "american" and "?", search type 0, 0: -1.0
+hit: 22.592222222222222
+
+caseNum: 7
+Distance between Int "30" and "11", search type 0, 0: 1.0
+Distance between Int "111" and "15", search type 0, 0: 1.0
+Distance between Int "80" and "25", search type 0, 0: 1.0
+Distance between Int "2155" and "20", search type 0, 0: 1.0
+Distance between Int "15" and "11", search type 0, 0: 0.4
+Distance between String "american" and "?", search type 0, 0: -1.0
+hit: 24.12
+
+caseNum: 8
+Distance between Int "30" and "11", search type 0, 0: 1.0
+Distance between Int "98" and "15", search type 0, 0: 1.0
+Distance between Int "68" and "25", search type 0, 0: 0.7962962962962963
+Distance between Int "2155" and "20", search type 0, 0: 1.0
+Distance between Int "17" and "11", search type 0, 0: 0.6
+Distance between String "american" and "?", search type 0, 0: -1.0
+hit: 23.690438957475994
