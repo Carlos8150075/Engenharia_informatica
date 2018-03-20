@@ -8,6 +8,8 @@ package com.mycompany.pf_v1;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javax.swing.JOptionPane;
+import jdk.nashorn.internal.scripts.JO;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -92,7 +94,14 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(checkData()){
+            JOptionPane.showMessageDialog(this, "Credenciais Validas");
+            this.setVisible(false);
+            Directory dir = new Directory();
+            dir.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Credenciais invalidas");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -138,18 +147,24 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private void checkData(){
+    private boolean checkData(){
         String databaseName = "gestao";
         MongoClient mongoClient = new MongoClient();
         MongoDatabase database = mongoClient.getDatabase(databaseName);
         MongoCollection<Document> coll = database.getCollection("users");
         
         String email = jTextField1.getText();
-        String password = jPasswordField1.getPassword().toString();
+        String password = new String(jPasswordField1.getPassword());
         String BDpassword = coll.find(new Document().append("email", email)).first().getString("password");
         userID = coll.find(new Document().append("email", email)).first().getObjectId("_id");
         
-        
+        if(!password.equals(BDpassword)){
+            
+            return false;
+        }else{
+            
+            return true;
+        }
         
         
     }

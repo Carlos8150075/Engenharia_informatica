@@ -183,9 +183,9 @@ public class Registo extends javax.swing.JFrame {
     
     
     private void saveToDB(){
-        String nome = jTextField1.getText();
-        String email = jTextField2.getText();
-        String password = jPasswordField1.getPassword().toString();
+        String email = jTextField1.getText();
+        String nome = jTextField2.getText();
+        String password = new String(jPasswordField1.getPassword());
         
         
         String databaseName = "gestao";
