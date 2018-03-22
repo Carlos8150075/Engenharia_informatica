@@ -9,7 +9,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javax.swing.JOptionPane;
-import jdk.nashorn.internal.scripts.JO;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -18,7 +17,9 @@ import org.bson.types.ObjectId;
  * @author Bernardo
  */
 public class Login extends javax.swing.JFrame {
+
     public static ObjectId userID;
+
     /**
      * Creates new form Login
      */
@@ -40,6 +41,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +53,13 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Voltar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -70,8 +79,10 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jTextField1)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jButton1)))
+                        .addGap(161, 161, 161)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,22 +98,30 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addComponent(jButton1)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(checkData()){
+        if (checkData() && validateForm()) {
             JOptionPane.showMessageDialog(this, "Credenciais Validas");
             this.setVisible(false);
             Directory dir = new Directory();
             dir.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Credenciais invalidas");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Home home = new Home();
+        this.setVisible(false);
+        home.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,34 +160,42 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private boolean checkData(){
+    private boolean checkData() {
         String databaseName = "gestao";
         MongoClient mongoClient = new MongoClient();
         MongoDatabase database = mongoClient.getDatabase(databaseName);
         MongoCollection<Document> coll = database.getCollection("users");
-        
+
         String email = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
         String BDpassword = coll.find(new Document().append("email", email)).first().getString("password");
         userID = coll.find(new Document().append("email", email)).first().getObjectId("_id");
-        
-        if(!password.equals(BDpassword)){
-            
+
+        if (!password.equals(BDpassword)) {
+
             return false;
-        }else{
-            
+        } else {
+
             return true;
         }
-        
-        
-    }
-    
-    
 
+    }
+
+    
+    private boolean validateForm(){
+        String email = jTextField1.getText();
+        String password = new String(jPasswordField1.getPassword());
+        if(email.isEmpty() && password.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
