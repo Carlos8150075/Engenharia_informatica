@@ -118,29 +118,35 @@ public class AddSubject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         
-        String databaseName = "gestao";
-        MongoClient mongoClient = new MongoClient();
-        MongoDatabase database = mongoClient.getDatabase(databaseName);
-        MongoCollection<org.bson.Document> coll = database.getCollection("subjects");
-        
-        String date = setDateString();
-        String name = jTextField1.getText();
-        String gender = getGender();
-        
-        if (isDateValid(date) || validateForm()) {
-            Document doc = new Document("sexo", gender)
-                    .append("dataNascimento", date)
-                    .append("nome", name)
-                    .append("researcher", Login.userID);
-
-            coll.insertOne(doc);
-            this.setVisible(false);
-            ManageSubjects as = new ManageSubjects();
-            as.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "Campos Inválidos!");
+        try {
+            String databaseName = "gestao";
+            MongoClient mongoClient = new MongoClient();
+            MongoDatabase database = mongoClient.getDatabase(databaseName);
+            MongoCollection<org.bson.Document> coll = database.getCollection("subjects");
+            
+            String date = setDateString();
+            Date finalDate = parseDate(date);
+            String name = jTextField1.getText();
+            String gender = getGender();
+            
+            if (validateForm()) {
+                Document doc = new Document("sexo", gender)
+                        .append("dataNascimento", finalDate)
+                        .append("nome", name)
+                        .append("researcher", Login.userID);
+                
+                coll.insertOne(doc);
+                JOptionPane.showMessageDialog(this,"Paciente adicionado com sucesso!");
+                this.setVisible(false);
+                ManageSubjects as = new ManageSubjects();
+                as.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Campos Inválidos!");
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Data inválida");
+            Logger.getLogger(AddSubject.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -191,26 +197,30 @@ public class AddSubject extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
-//    public static Date parseDate(String target) throws ParseException {
-//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-//        return df.parse(target);
-//    }
-
+    public static Date parseDate(String target) throws ParseException {
+        
+        if (isDateValid(target)) {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            return df.parse(target);            
+        }else{
+            
+            throw new ParseException(target, WIDTH);
+        }
+        
+    }
+    
     private String setDateString() {
         String day = jTextField2.getText();
-//        int day = Integer.parseInt(dayText);
 
         String month = jTextField3.getText();
-//        int month = Integer.parseInt(monthText);
 
         String year = jTextField4.getText();
-//        int year = Integer.parseInt(yearText);
 
         String date = new String(year + "-" + month + "-" + day);
-
+        
         return date;
     }
-
+    
     private String getGender() {
         String gender = jComboBox1.getSelectedItem().toString();
         if (gender.equals("Masculino")) {
@@ -219,8 +229,8 @@ public class AddSubject extends javax.swing.JFrame {
             return "female";
         }
     }
-    final static String DATE_FORMAT = "dd-MM-yyyy";
-
+    final static String DATE_FORMAT = "yyyy-MM-dd";
+    
     public static boolean isDateValid(String date) {
         try {
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);
@@ -231,17 +241,17 @@ public class AddSubject extends javax.swing.JFrame {
             return false;
         }
     }
-
+    
     private boolean validateForm() {
         String name = jTextField1.getText();
         String day = jTextField2.getText();
         String month = jTextField3.getText();
         String year = jTextField4.getText();
-
+        
         if (name.isEmpty() || day.isEmpty() || month.isEmpty() || year.isEmpty()) {
             return false;
         }
-
+        
         return true;
     }
 }
