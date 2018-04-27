@@ -210,13 +210,12 @@ public class Registo extends javax.swing.JFrame {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase database = mongoClient.getDatabase(databaseName);
         MongoCollection<org.bson.Document> coll = database.getCollection("users");
-        
-        Document doc = new Document("name", nome)
-                .append("email", email)
-                .append("password", password);
-        
-        coll.insertOne(doc);
-        
+
+            Document doc = new Document("name", nome)
+                    .append("email", email)
+                    .append("password", password);
+
+            coll.insertOne(doc);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
