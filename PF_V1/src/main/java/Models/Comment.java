@@ -11,19 +11,19 @@ import org.bson.types.ObjectId;
  *
  * @author Bernardo
  */
-public class CommentModel {
+public class Comment {
     public String comment;
     public long timestamp;
     public long time_since_start;
     public ObjectId variable;
     public ObjectId session;
 
-    public CommentModel()
+    public Comment()
     {
 
     }
 
-    public CommentModel(String comment, long timestamp, long time_since_start, ObjectId variable, ObjectId session) {
+    public Comment(String comment, long timestamp, long time_since_start, ObjectId variable, ObjectId session) {
         this.comment = comment;
         this.timestamp = timestamp;
         this.time_since_start = time_since_start;

@@ -5,6 +5,7 @@
  */
 package com.mycompany.pf_v1;
 
+import Models.Comment;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -19,7 +20,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
@@ -30,14 +34,17 @@ import org.bson.types.ObjectId;
  * @author Bernardo
  */
 public class Sessions extends javax.swing.JFrame {
-
+     private javax.swing.JFrame frame = this;
     /**
      * Creates new form Sessions
      */
     public Sessions() {
         initComponents();
         fillComboBox();
-        componentsVisibity(false);
+        TableComponentsVisibility(false);
+        SessionComponentsVisibility(true);
+        exit();
+        BackButtonClicked();
     }
 
     /**
@@ -64,11 +71,14 @@ public class Sessions extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +102,43 @@ public class Sessions extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Minuto", "Segundo", "Agulha", "Title 4", "Title 5"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Agulhas", jPanel2);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,34 +180,33 @@ public class Sessions extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(303, 303, 303)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(306, 306, 306)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2))
         );
 
         jTabbedPane1.addTab("Comentários", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 201, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Agulhas", jPanel2);
+        jButton3.setText("Voltar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,9 +215,9 @@ public class Sessions extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -181,33 +227,34 @@ public class Sessions extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                                    .addComponent(jTextField4))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(11, 11, 11)))
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(75, 75, 75)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
-                                .addGap(148, 148, 148))))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,10 +279,11 @@ public class Sessions extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -259,6 +307,8 @@ public class Sessions extends javax.swing.JFrame {
                     .append("researcher", Login.userID); 
             
             coll.insertOne(doc);
+            TableComponentsVisibility(true);
+            SessionComponentsVisibility(false);
         } catch (ParseException ex) {
             Logger.getLogger(Sessions.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -267,6 +317,13 @@ public class Sessions extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         addRow();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        BackButtonClicked();
+        Directory dir = new Directory();
+        dir.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,6 +363,7 @@ public class Sessions extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,8 +374,10 @@ public class Sessions extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -339,7 +399,28 @@ public class Sessions extends javax.swing.JFrame {
         }
         jComboBox1.setModel(new DefaultComboBoxModel(subjectsList.toArray()));
     }
-
+    
+    private void exit(){
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            if (JOptionPane.showConfirmDialog(frame, 
+                "Are you sure to close this window?", "Really Closing?", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                String databaseName = "gestao";
+            MongoClient mongoClient = new MongoClient();
+            MongoDatabase database = mongoClient.getDatabase(databaseName);
+            MongoCollection<Document> coll = database.getCollection("sessions");
+            ObjectId sessionID = getLastSession();
+            coll.deleteMany(new Document("_id", sessionID));
+            System.exit(0);
+            }else{
+                frame.setDefaultCloseOperation(frame.DO_NOTHING_ON_CLOSE);
+            }
+        }
+    });
+    }
     public static Date parseDate(String target) throws ParseException {
 
         if (isDateValid(target)) {
@@ -378,13 +459,91 @@ public class Sessions extends javax.swing.JFrame {
         JTable table = jTable1;
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(new Object[]{});
+        //TableDataHandler();
     }
     
-    private void componentsVisibity(boolean state){
+    private void TableComponentsVisibility(boolean state){
         jTable1.setVisible(state);
         jTabbedPane1.setVisible(state);
         jButton2.setVisible(state);
         jPanel1.setVisible(state);
         jPanel2.setVisible(state);
+        jScrollPane2.setVisible(state);
+    }
+    
+    private void SessionComponentsVisibility(boolean state){
+        jLabel1.setVisible(state);
+        jLabel2.setVisible(state);
+        jLabel3.setVisible(state);
+        jLabel4.setVisible(state);
+        jLabel5.setVisible(state);
+        jComboBox1.setVisible(state);
+        jTextField1.setVisible(state);
+        jTextField2.setVisible(state);
+        jTextField3.setVisible(state);
+        jTextField4.setVisible(state);
+        jTextField5.setVisible(state);
+        jTextArea1.setVisible(state);
+        jButton1.setVisible(state);
+    }
+    
+    private ObjectId getLastSession(){
+        String databaseName = "gestao";
+        MongoClient mongoClient = new MongoClient();
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
+        MongoCollection<Document> coll = database.getCollection("sessions");
+        
+        ObjectId lastSession = coll.find().sort(new Document().append("_id", -1)).first().getObjectId("_id");
+        
+        return lastSession;
+    }
+    
+    private Date getLastDate(){
+        String databaseName = "gestao";
+        MongoClient mongoClient = new MongoClient();
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
+        MongoCollection<Document> coll = database.getCollection("sessions");
+        Date start = coll.find().sort(new Document().append("_id", -1)).first().getDate("date");
+        
+        return start;
+    }
+    
+    private void TableDataHandler(){
+        List<Comment> comments = new ArrayList<Comment>();
+        String variableID = "5a635b899dd8803cb0e5e486";
+        String databaseName = "gestao";
+        MongoClient mongoClient = new MongoClient();
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
+        MongoCollection<Document> coll = database.getCollection("data");
+        
+        ObjectId lastSession = getLastSession();
+        Date start = getLastDate();
+        JTable table = jTable1;
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for(int i = 0; i < model.getRowCount(); i++){
+                if((model.getValueAt(i, 0) != null) && (model.getValueAt(i, 1) != null) && (model.getValueAt(i, 2) != null)){
+                    int minutes = (int) model.getValueAt(i, 0);
+                    int seconds = (int) model.getValueAt(i, 1);
+                    String comment = model.getValueAt(i, 2).toString();
+                    System.out.println("minute:" + minutes + "\n" + "seconds: " + seconds + "\n" + "comment: " + comment);
+                    int time = minutes*60000+seconds*1000;
+                    comments.add(new Comment(comment, start.getTime() + time, time, new ObjectId(variableID), lastSession));
+                }
+        }
+        coll.insertMany(comments.stream().map(x -> toDocumentComment(x)).collect(Collectors.toList()));
+    }
+    
+    private static Document toDocumentComment(Comment inst) {
+        Document doc = new Document();
+        doc.append("session", inst.session);
+        doc.append("variable", inst.variable);
+        doc.append("timestamp", new Date(inst.timestamp));
+        doc.append("timeSinceStart", inst.time_since_start);
+        doc.append("comment", inst.comment);
+        return doc;
+    }
+    
+    private void BackButtonClicked(){
+        
     }
 }

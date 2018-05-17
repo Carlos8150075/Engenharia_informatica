@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
         String BDpassword = coll.find(new Document().append("email", email)).first().getString("password");
         userID = coll.find(new Document().append("email", email)).first().getObjectId("_id");
         
-        coll.find().sort(new Document().append("_id", -1)).first();
+        
 
         if (!password.equals(BDpassword)) {
             return false;
